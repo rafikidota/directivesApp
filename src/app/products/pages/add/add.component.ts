@@ -7,8 +7,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddComponent implements OnInit {
 
-  text:string = 'David Lesmes';
-  color:string = 'violet';
+  text: string = 'David Lesmes';
+  color: string = 'violet';
   myForm: FormGroup = this.fb.group({
     name: [, [Validators.required]],
   });
@@ -17,16 +17,17 @@ export class AddComponent implements OnInit {
 
   }
   save() {
-
+    this.changeColor();
+    this.changeName();
   }
   hasError(fcn: string) { //formControlName
     return this.myForm.get(fcn)?.invalid || false;
   }
-  changeName(){
+  changeName() {
     this.text = Math.random().toString();
   }
-  changeColor(){
-    const color = "#xxxxxx".replace(/x/g, y=>(Math.random()*16|0).toString(16));
+  changeColor() {
+    const color = "#xxxxxx".replace(/x/g, y => (Math.random() * 16 | 0).toString(16));
     this.color = color;
   }
 
