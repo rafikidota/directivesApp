@@ -11,8 +11,8 @@
         <div class="col-auto">
             <span error-message
                   [color]="color"
-                  [message]="text" 
-                  *ngIf="hasError('name')">                
+                  [message]="text"
+                  [valid]="!hasError('name')">                
             </span>
         </div>
     </div>

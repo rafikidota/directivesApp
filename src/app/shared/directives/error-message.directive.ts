@@ -5,15 +5,26 @@ import { Directive, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '
 })
 export class ErrorMessageDirective implements OnInit, OnChanges {
 
-
+  private _color: string = 'red';
+  private _message: string = 'Este campo es requerido';
   htmlElement: ElementRef<HTMLElement>;
   // @Input() color: string = 'red';
   @Input() set color(value: string) {
-    this.htmlElement.nativeElement.style.color = value;
+    this._color = value;
+    this.setColor();
   }
   // @Input() message: string = 'Este campo es requerido';
   @Input() set message(value: string) {
-    this.htmlElement.nativeElement.innerText = value;
+    this._message = value;
+    this.setMessage();
+  }
+  
+  @Input() set valid(value: boolean) {
+    if (value === true) {
+      this.htmlElement.nativeElement.classList.add('hidden');
+    } else {
+      this.htmlElement.nativeElement.classList.remove('hidden');
+    }
   }
 
   constructor(private el: ElementRef<HTMLElement>) {
@@ -21,8 +32,8 @@ export class ErrorMessageDirective implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    // this.setColor();
-    // this.setMessage();
+    this.setColor();
+    this.setMessage();
     this.setStyle();
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -31,15 +42,16 @@ export class ErrorMessageDirective implements OnInit, OnChanges {
     // this.setColor();
   }
 
-  setColor(): void {
-    this.htmlElement.nativeElement.style.color = this.color;
-  }
   setStyle(): void {
     this.htmlElement.nativeElement.classList.add('form-text');
   }
 
+  setColor(): void {
+    this.htmlElement.nativeElement.style.color = this._color;
+  }
+
   setMessage(): void {
-    this.htmlElement.nativeElement.innerText = this.message;
+    this.htmlElement.nativeElement.innerText = this._message;
   }
 
 }
