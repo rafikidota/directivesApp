@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ErrorMessageDirective } from './directives/error-message.directive';
+import { CustomIfDirective } from './directives/custom-if.directive';
 
 
 
 @NgModule({
   declarations: [
-    ErrorMessageDirective
+    ErrorMessageDirective,
+    CustomIfDirective
   ],
   exports: [
-    ErrorMessageDirective
+    ErrorMessageDirective,
+    CustomIfDirective
   ],
   imports: [
     CommonModule

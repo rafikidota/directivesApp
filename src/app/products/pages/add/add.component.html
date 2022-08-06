@@ -9,10 +9,10 @@
             <input type="text" class="form-control" formControlName="name" placeholder="Nombre">
         </div>
         <div class="col-auto">
-            <span error-message
-                  [color]="color"
-                  [message]="text"
-                  [valid]="!hasError('name')">                
+            <span error-message 
+                  [color]="color" 
+                  [message]="text" 
+                  [valid]="!hasError('name')">
             </span>
         </div>
     </div>
@@ -27,3 +27,12 @@
 <h3 class="mt-5">Form</h3>
 <pre>Value: {{ myForm.value | json }}</pre>
 <pre>Valid: {{ myForm.valid }}</pre>
+
+<div class="row mt-5"
+     *customIf="myForm.valid">
+    <div class="col">
+        <div class="alert alert-primary">
+            Todo OK!
+        </div>
+    </div>
+</div>
